@@ -1,0 +1,18 @@
+main {
+    min-height: 80vh;
+}
+/* fix for issue with bootstrap class .ml-auto */
+.ml-auto {
+    margin-left: auto !important;
+}
+/* fix for issue with bootstrap class .btn-block */
+.btn-block {
+    width: 100%;
+}
+
+h3 {
+    padding: 1rem 0;
+}
+.rating span {
+    margin: 0.1rem;
+}
