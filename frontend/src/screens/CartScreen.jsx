@@ -4,7 +4,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import {Row, Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap';
-import {addToCart} from '../actions/cartActions';
+import {addToCart, loadCart} from '../actions/cartActions';
+import CartItem from '../components/CartItem';
 
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id;
@@ -15,8 +16,16 @@ const CartScreen = ({match, location, history}) => {
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty));
+        } else {
+            dispatch(loadCart());
         }
     }, [dispatch, productId, qty]);
+    const removeFromCartHandler = (id) => {
+        console.log('remove');
+    };
+    const addToCartHandler = (e, item) => {
+        dispatch(addToCart(item.product, Number(e.target.value)));
+    };
 
     return (
         <Row>
@@ -46,16 +55,25 @@ const CartScreen = ({match, location, history}) => {
                                     </Col>
                                     <Col md={2}>${item.price}</Col>
                                     <Col md={2}>
-                                        <Form.Control
+                                        <CartItem
+                                            item={item}
+                                            addItem={addToCartHandler}
+                                        />
+                                        {/* <Form.Control
                                             as='select'
-                                            value={qty}
+                                            value={item.qty}
                                             onChange={(e) =>
-                                                setQty(e.target.value)
+                                                dispatch(
+                                                    addToCart(
+                                                        item.product,
+                                                        Number(e.target.value)
+                                                    )
+                                                )
                                             }
                                         >
                                             {[
                                                 ...Array(
-                                                    product.countInStock
+                                                    item.countInStock
                                                 ).keys(),
                                             ].map((x) => (
                                                 <option
@@ -65,7 +83,20 @@ const CartScreen = ({match, location, history}) => {
                                                     {x + 1}
                                                 </option>
                                             ))}
-                                        </Form.Control>
+                                        </Form.Control> */}
+                                    </Col>
+                                    <Col md={2}>
+                                        <Button
+                                            type='button'
+                                            variant='light'
+                                            onClick={() =>
+                                                removeFromCartHandler(
+                                                    item.product
+                                                )
+                                            }
+                                        >
+                                            <i className='fas fa-trash'></i>
+                                        </Button>
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
