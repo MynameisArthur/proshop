@@ -1,3 +1,3 @@
 export const CART_ADD_ITEM = 'CART_ADD_ITEM';
 export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
-export const LOAD_CART = 'LOAD_CART';
+export const CART_LOAD_ITEMS = 'CART_LOAD_ITEMS';

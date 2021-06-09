@@ -1,7 +1,7 @@
 import {
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,
-    LOAD_CART,
+    CART_LOAD_ITEMS,
 } from '../constants/cartConstants';
 
 export const cartReducer = (state = {cartItems: []}, action) => {
@@ -24,10 +24,17 @@ export const cartReducer = (state = {cartItems: []}, action) => {
                     cartItems: [...state.cartItems, item],
                 };
             }
-        case LOAD_CART:
+        case CART_LOAD_ITEMS:
             return {
                 ...state,
                 cartItems: action.payload,
+            };
+        case CART_REMOVE_ITEM:
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(
+                    (x) => x.product !== action.payload
+                ),
             };
         default:
             return state;
