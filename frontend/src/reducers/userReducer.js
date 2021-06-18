@@ -12,6 +12,7 @@ const {
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
+    USER_DETAILS_RESET,
 } = require('../constants/userConstants');
 export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
@@ -72,6 +73,10 @@ export const userDetailsReducer = (state = {user: {}}, action) => {
             return {
                 loading: false,
                 error: action.payload,
+            };
+        case USER_DETAILS_RESET:
+            return {
+                user: {},
             };
         default:
             return state;
