@@ -36,8 +36,16 @@ const deleteProduct = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Create a product
+// @route POST api/products
+// @access Private/Admin
+const createProduct = asyncHandler(async (req, res) => {
+    const product = new Product({});
+});
+
 module.exports = {
     getProducts,
     getProductById,
     deleteProduct,
+    createProduct,
 };
