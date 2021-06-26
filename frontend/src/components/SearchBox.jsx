@@ -29,7 +29,7 @@ const SearchBox = ({history}) => {
                         variant='outline-success'
                         className='p-2'
                     >
-                        Search
+                        Search Products
                     </Button>
                 </Col>
             </Row>
